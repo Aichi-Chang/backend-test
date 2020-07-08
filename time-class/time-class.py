@@ -53,12 +53,17 @@ class Time(AbstractTime):
             boundaryUpper = 24
 
         if inputNum >= boundaryUpper:
-            forNext = inputNum / boundaryUpper
+            forNext = math.floor(inputNum / boundaryUpper)
             forThis = inputNum % boundaryUpper
-            returnDict.update({'forNext': math.floor(forNext)})
+            returnDict.update({'forNext': forNext})
             returnDict.update({'forThis': forThis})
-        else:
+        elif 0 <= inputNum < boundaryUpper:
             forThis = inputNum % boundaryUpper
+            returnDict.update({'forThis': forThis})
+        elif inputNum < 0:
+            forNext = int(inputNum / boundaryUpper)
+            forThis = inputNum % boundaryUpper
+            returnDict.update({'forNext': forNext})
             returnDict.update({'forThis': forThis})
 
 
