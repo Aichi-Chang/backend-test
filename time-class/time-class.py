@@ -18,11 +18,10 @@ class Time(AbstractTime):
     def scale(self, addSecs):
         return self.normalising(self.hrs, self.mins, self.secs + addSecs)
 
-        # return self.secs + addSecs, self.mins, self.hrs
 
 
     def normalising(self, hrs, mins, secs):
-        # print(self.normalising_helper(self.secs, 's'))
+
         returnDict = self.normalising_helper(secs, 's')
         self.secs = returnDict.get('forThis')
 
@@ -67,6 +66,7 @@ class Time(AbstractTime):
 
 
     def timeString(self):
+        self.normalising(self.hrs, self.mins, self.secs)
         returnString = ''
         returnString = self.add_zero(self.hrs) + ':' + self.add_zero(self.mins) + ':' + self.add_zero(self.secs)
 
@@ -90,10 +90,9 @@ class Time(AbstractTime):
 
 
 
-now = Time(2, 20, 100)
-# print(now.timeString())
-# print(now.normalising_helper(20, 'm'))
-print(now.scale(500))
-print(now.timeString())
-
-
+t = Time(1, 30, 20)
+print(t.timeString())
+print(t.scale(400))
+print(t.timeString())
+t2 = Time(1, 100, 0)
+print(t2.timeString())
